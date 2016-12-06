@@ -70,31 +70,31 @@ function getRandomInt(min, max) {
 }
 
 function keyDownHandler(e) {
-	if (e.keyCode == 87) {
+	if ((e.keyCode == 87) || (e.keyCode == 38)) {
 		upPressed = true;
 	}
-	else if (e.keyCode == 83) {
+	else if ((e.keyCode == 83) || (e.keyCode == 40)) {
 		downPressed = true;
 	}
-	else if (e.keyCode == 65) {
+	else if ((e.keyCode == 65) || (e.keyCode == 37)) {
 		leftPressed = true;
 	}
-	else if (e.keyCode == 68) {
+	else if ((e.keyCode == 68) || (e.keyCode == 39)) {
 		rightPressed = true;
 	}
 }
 
 function keyUpHandler(e) {
-	if (e.keyCode == 87) {
+	if ((e.keyCode == 87) || (e.keyCode == 38)) {
 		upPressed = false;
 	}
-	else if (e.keyCode == 83) {
+	else if ((e.keyCode == 83) || (e.keyCode == 40)) {
 		downPressed = false;
 	}
-	else if (e.keyCode == 65) {
+	else if ((e.keyCode == 65) || (e.keyCode == 37)) {
 		leftPressed = false;
 	}
-	else if (e.keyCode == 68) {
+	else if ((e.keyCode == 68) || (e.keyCode == 39)) {
 		rightPressed = false;
 	}	
 }
