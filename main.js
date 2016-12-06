@@ -2,8 +2,8 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
 var bugRadius = 10;
-var bugX = (canvas.width - bugRadius) / 2;
-var bugY = (canvas.height - bugRadius) / 2;
+var bugX = getRandomInt(10, (canvas.width-bugRadius));
+var bugY = (canvas.height - bugRadius);
 var fireX = getRandomInt(1, 48);
 var fireY = getRandomInt(1, 32);
 var exitHeight = 5;
