@@ -29,16 +29,16 @@ function draw() {
 
 	drawBug();
 
-	if (rightPressed && bugX < canvas.width - bugRadius) {
+	if (rightPressed) {
 		bugX += 7;
 	}
-	else if (leftPressed && bugX > 0) {
+	else if (leftPressed) {
 		bugX -= 7;
 	}
-	else if (upPressed && bugY < canvas.height - bugRadius) {
+	else if (upPressed) {
 		bugY += 7;
 	}
-	else if (downPressed && bugY > 0) {
+	else if (downPressed) {
 		bugY -= 7;
 	}
 }
