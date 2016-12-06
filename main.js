@@ -24,7 +24,7 @@ document.addEventListener("keyup", keyUpHandler, false);
 function drawBug() {
 	ctx.beginPath();
 	ctx.arc(bugX, bugY, bugRadius, 0, Math.PI*2);
-	ctx.fillStyle = "#0095DD";
+	ctx.fillStyle = "#808000";
 	ctx.fill();
 	ctx.closePath();
 }
