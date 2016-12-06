@@ -9,7 +9,7 @@ var exitWidth = 30;
 var exitX = getRandomInt(10, (canvas.width - exitWidth));
 
 var fireballRadius = 10;
-var fireballCount = getRandomInt(1, 5);
+var fireballCount = getRandomInt(5, 10);
 var fireballXArray = [];
 var fireballYArray = [];
 var fireballDXArray = [];
@@ -35,8 +35,8 @@ for (i = 0; i < brickCount; i++) {
 for (i = 0; i < fireballCount; i++) {
 	fireballXArray.push(getRandomInt(10, canvas.width - fireballRadius));
 	fireballYArray.push(getRandomInt(10, canvas.height - fireballRadius));
-	fireballDXArray.push(1);
-	fireballDYArray.push(-1);
+	fireballDXArray.push(getRandomInt(1, 2));
+	fireballDYArray.push(-getRandomInt(1, 2));
 }
 
 function drawBug() {
