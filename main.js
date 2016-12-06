@@ -2,11 +2,8 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
 var bugRadius = 10;
-var bugX = (canvas.width - bugRadius);
-var bugY = (canvas.height - bugRadius);
-
-var x = canvas.width / 2;
-var y = canvas.height - 30;
+var bugX = (canvas.width - bugRadius) / 2;
+var bugY = (canvas.height - bugRadius) / 2;
 
 var upPressed = false;
 var downPressed = false;
@@ -18,7 +15,7 @@ document.addEventListener("keyup", keyUpHandler, false);
 
 function drawBug() {
 	ctx.beginPath();
-	ctx.arc(250, 300, 10, 0, Math.PI*2);
+	ctx.arc(bugX, bugY, bugRadius, 0, Math.PI*2);
 	ctx.fillStyle = "#0095DD";
 	ctx.fill();
 	ctx.closePath();
@@ -36,10 +33,10 @@ function draw() {
 		bugX -= 7;
 	}
 	else if (upPressed) {
-		bugY += 7;
+		bugY -= 7;
 	}
 	else if (downPressed) {
-		bugY -= 7;
+		bugY += 7;
 	}
 }
 
@@ -47,10 +44,10 @@ function keyDownHandler(e) {
 	if (e.keyCode == 87) {
 		upPressed = true;
 	}
-	else if (e.keyCode == 65) {
+	else if (e.keyCode == 83) {
 		downPressed = true;
 	}
-	else if (e.keyCode == 83) {
+	else if (e.keyCode == 65) {
 		leftPressed = true;
 	}
 	else if (e.keyCode == 68) {
@@ -62,10 +59,10 @@ function keyUpHandler(e) {
 	if (e.keyCode == 87) {
 		upPressed = false;
 	}
-	else if (e.keyCode == 65) {
+	else if (e.keyCode == 83) {
 		downPressed = false;
 	}
-	else if (e.keyCode == 83) {
+	else if (e.keyCode == 65) {
 		leftPressed = false;
 	}
 	else if (e.keyCode == 68) {
