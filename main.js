@@ -8,7 +8,7 @@ var fireX = getRandomInt(1, 48);
 var fireY = getRandomInt(1, 32);
 var exitHeight = 5;
 var exitWidth = 30;
-var exitX = (canvas.width-exitWidth) / 2;
+var exitX = getRandomInt(10, (canvas.width-exitWidth));
 
 var x = canvas.width / 2;
 var y = canvas.height - 30;
@@ -64,7 +64,7 @@ function drawBricks() {
 
 function drawExit() {
 	ctx.beginPath();
-    ctx.rect(exitX, canvas.height-exitHeight, exitWidth, exitHeight);
+    ctx.rect(exitX, 0, exitWidth, exitHeight);
     ctx.fillStyle = "#000000";
     ctx.fill();
     ctx.closePath();
