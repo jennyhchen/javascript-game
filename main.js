@@ -17,7 +17,7 @@ var fireballYArray = [];
 var fireballDXArray = [];
 var fireballDYArray = [];
 
-var brickCount = getRandomInt(5, 10);
+var brickCount = getRandomInt(8, 15);
 var brickXArray = [];
 var brickYArray = [];
 
@@ -30,8 +30,8 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 for (i = 0; i < brickCount; i++) {
-	brickXArray.push(getRandomInt(10, 480));
-	brickYArray.push(getRandomInt(10, 320));
+	brickXArray.push(getRandomInt(20, canvas.width - 45));
+	brickYArray.push(getRandomInt(20, canvas.height - 45));	
 }
 
 for (i = 0; i < fireballCount; i++) {
