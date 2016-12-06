@@ -2,13 +2,18 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
 var bugRadius = 10;
-var bugX = getRandomInt(10, (canvas.width-bugRadius));
+var bugX = getRandomInt(10, (canvas.width - bugRadius));
 var bugY = (canvas.height - bugRadius);
-var fireX = getRandomInt(1, 48);
-var fireY = getRandomInt(1, 32);
 var exitHeight = 5;
 var exitWidth = 30;
-var exitX = getRandomInt(10, (canvas.width-exitWidth));
+var exitX = getRandomInt(10, (canvas.width - exitWidth));
+
+var fireballRadius = 10;
+var fireballCount = getRandomInt(1, 5);
+var fireballXArray = [];
+var fireballYArray = [];
+var fireballDXArray = [];
+var fireballDYArray = [];
 
 var brickCount = getRandomInt(5, 10);
 var brickXArray = [];
@@ -27,6 +32,13 @@ for (i = 0; i < brickCount; i++) {
 	brickYArray.push(getRandomInt(10, 320));
 }
 
+for (i = 0; i < fireballCount; i++) {
+	fireballXArray.push(getRandomInt(10, canvas.width - fireballRadius));
+	fireballYArray.push(getRandomInt(10, canvas.height - fireballRadius));
+	fireballDXArray.push(1);
+	fireballDYArray.push(-1);
+}
+
 function drawBug() {
 	ctx.beginPath();
 	ctx.arc(bugX, bugY, bugRadius, 0, Math.PI*2);
@@ -41,7 +53,7 @@ function draw() {
 	drawBug();
 	drawExit();
 	drawBricks();
-	drawFire();
+	drawFireballs();
 
 	if (rightPressed && (bugX < (canvas.width - bugRadius))) {
 		bugX += 3;
@@ -54,6 +66,19 @@ function draw() {
 	}
 	else if (downPressed && (bugY < (canvas.height - bugRadius))) {
 		bugY += 3;
+	}
+
+	for (i = 0; i < fireballXArray.length; i++) {
+		if (fireballXArray[i] + fireballDXArray[i] > canvas.width - fireballRadius || fireballXArray[i] + fireballDXArray[i] < fireballRadius) {
+			fireballDXArray[i] = -fireballDXArray[i];
+		}
+
+		if (fireballYArray[i] + fireballDYArray[i] > canvas.height - fireballRadius || fireballYArray[i] + fireballDYArray[i] < fireballRadius) {
+			fireballDYArray[i] = -fireballDYArray[i];
+		}
+
+		fireballXArray[i] += fireballDXArray[i];
+		fireballYArray[i] += fireballDYArray[i];
 	}
 }
 
@@ -79,8 +104,18 @@ function drawExit() {
     ctx.closePath();
 }
 
-function drawFire() {
-	drawBrick(fireX * 10, fireY * 10, 25, 25, '#E25822');
+function drawFireball(fireballX, fireballY) {
+	ctx.beginPath();
+	ctx.arc(fireballX, fireballY, fireballRadius, 0, Math.PI*2);
+	ctx.fillStyle = '#E25822';
+	ctx.fill();
+	ctx.closePath();
+}
+
+function drawFireballs() {
+	for (i = 0; i < fireballYArray.length; i++) {
+		drawFireball(fireballXArray[i], fireballYArray[i]);
+	}
 }
 
 function getRandomInt(min, max) {
