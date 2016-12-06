@@ -59,36 +59,11 @@ function draw() {
 	drawBricks();
 	drawFireballs();
 
-	if (rightPressed && (bugX < (canvas.width - bugWidth))) {
-		bugX += 3;
-	}
-	else if (leftPressed && (bugX > 0)) {
-		bugX -= 3;
-	}
-	else if (upPressed && (bugY > 20)) {
-		bugY -= 3;
-	}
-	else if (downPressed && (bugY < canvas.height)) {
-		bugY += 3;
-	}
+	moveBug();
 
-	for (i = 0; i < fireballXArray.length; i++) {
-		if (fireballXArray[i] + fireballDXArray[i] > canvas.width - fireballRadius || fireballXArray[i] + fireballDXArray[i] < fireballRadius) {
-			fireballDXArray[i] = -fireballDXArray[i];
-		}
+	fireballMovement();
 
-		if (fireballYArray[i] + fireballDYArray[i] > canvas.height - fireballRadius || fireballYArray[i] + fireballDYArray[i] < fireballRadius) {
-			fireballDYArray[i] = -fireballDYArray[i];
-		}
-
-		fireballXArray[i] += fireballDXArray[i];
-		fireballYArray[i] += fireballDYArray[i];
-	}
-
-	if (((bugY - bugHeight) == exitY) && (((bugX + bugWidth) > exitX) && (bugX < (exitX + exitWidth)))) {
-		alert("Congratulations! You got to the exit!");
-        document.location.reload();
-	}
+	exitCollision();
 }
 
 function drawBrick(brickX, brickY, brickWidth, brickHeight, brickColor) {
@@ -127,6 +102,28 @@ function drawFireballs() {
 	}
 }
 
+function exitCollision() {
+	if (((bugY - bugHeight) == exitY) && (((bugX + bugWidth) > exitX) && (bugX < (exitX + exitWidth)))) {
+		alert("Congratulations! You got to the exit!");
+        document.location.reload();
+	}
+}
+
+function fireballMovement() {
+	for (i = 0; i < fireballXArray.length; i++) {
+		if (fireballXArray[i] + fireballDXArray[i] > canvas.width - fireballRadius || fireballXArray[i] + fireballDXArray[i] < fireballRadius) {
+			fireballDXArray[i] = -fireballDXArray[i];
+		}
+
+		if (fireballYArray[i] + fireballDYArray[i] > canvas.height - fireballRadius || fireballYArray[i] + fireballDYArray[i] < fireballRadius) {
+			fireballDYArray[i] = -fireballDYArray[i];
+		}
+
+		fireballXArray[i] += fireballDXArray[i];
+		fireballYArray[i] += fireballDYArray[i];
+	}
+}
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -162,6 +159,21 @@ function keyUpHandler(e) {
 	else if ((e.keyCode == 68) || (e.keyCode == 39)) {
 		rightPressed = false;
 	}	
+}
+
+function moveBug() {
+	if (rightPressed && (bugX < (canvas.width - bugWidth))) {
+		bugX += 3;
+	}
+	else if (leftPressed && (bugX > 0)) {
+		bugX -= 3;
+	}
+	else if (upPressed && (bugY > 20)) {
+		bugY -= 3;
+	}
+	else if (downPressed && (bugY < canvas.height)) {
+		bugY += 3;
+	}
 }
 
 setInterval(draw, 10);
