@@ -6,6 +6,9 @@ var bugX = (canvas.width - bugRadius) / 2;
 var bugY = (canvas.height - bugRadius) / 2;
 var fireX = getRandomInt(1, 48);
 var fireY = getRandomInt(1, 32);
+var exitHeight = 5;
+var exitWidth = 30;
+var exitX = (canvas.width-exitWidth) / 2;
 
 var x = canvas.width / 2;
 var y = canvas.height - 30;
@@ -31,6 +34,7 @@ function draw() {
 
 	drawBricks();
 	drawBug();
+	drawExit();
 	drawFire();
 
 	if (rightPressed && (bugX < (canvas.width - bugRadius))) {
@@ -56,6 +60,14 @@ function drawBrick(brickX, brickY, brickWidth, brickHeight, brickColor) {
 }
 
 function drawBricks() {
+}
+
+function drawExit() {
+	ctx.beginPath();
+    ctx.rect(exitX, canvas.height-exitHeight, exitWidth, exitHeight);
+    ctx.fillStyle = "#000000";
+    ctx.fill();
+    ctx.closePath();
 }
 
 function drawFire() {
