@@ -1,9 +1,10 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
-var bugRadius = 10;
-var bugX = getRandomInt(10, (canvas.width - bugRadius));
-var bugY = (canvas.height - bugRadius);
+var bugHeight = 20;
+var bugWidth = 20;
+var bugX = getRandomInt(10, canvas.width);
+var bugY = canvas.height;
 var exitHeight = 5;
 var exitWidth = 30;
 var exitX = getRandomInt(10, (canvas.width - exitWidth));
@@ -40,32 +41,31 @@ for (i = 0; i < fireballCount; i++) {
 	fireballDYArray.push(-getRandomInt(1, 2));
 }
 
-function drawBug() {
-	ctx.beginPath();
-	ctx.arc(bugX, bugY, bugRadius, 0, Math.PI*2);
-	ctx.fillStyle = "#808000";
-	ctx.fill();
-	ctx.closePath();
-}
-
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.rect(bugX, bugY, 20, 20);
 
-	drawBug();
+	var bug = new Image();
+	bug.src = 'images/bug.png';
+	bug.onload = function() {
+		var pattern = ctx.createPattern(this, "no-repeat");
+		ctx.drawImage(bug, bugX, bugY - bugHeight);
+	}
+
 	drawExit();
 	drawBricks();
 	drawFireballs();
 
-	if (rightPressed && (bugX < (canvas.width - bugRadius))) {
+	if (rightPressed && (bugX < (canvas.width - bugWidth))) {
 		bugX += 3;
 	}
-	else if (leftPressed && (bugX > 10)) {
+	else if (leftPressed && (bugX > 0)) {
 		bugX -= 3;
 	}
-	else if (upPressed && (bugY > 10)) {
+	else if (upPressed && (bugY > 20)) {
 		bugY -= 3;
 	}
-	else if (downPressed && (bugY < (canvas.height - bugRadius))) {
+	else if (downPressed && (bugY < canvas.height)) {
 		bugY += 3;
 	}
 
@@ -82,7 +82,7 @@ function draw() {
 		fireballYArray[i] += fireballDYArray[i];
 	}
 
-	if (((bugY - bugRadius) == exitY) && ((bugX > exitX) && (bugX < (exitX + exitWidth)))) {
+	if (((bugY - bugHeight) == exitY) && ((bugX > exitX) && (bugX < (exitX + exitWidth)))) {
 		alert("Congratulations! You got to the exit!");
         document.location.reload();
 	}
