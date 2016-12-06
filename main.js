@@ -44,24 +44,26 @@ for (i = 0; i < fireballCount; i++) {
 	fireballDYArray.push(-fireballSpeed);
 }
 
+var bug = new Image();
+bug.src = 'images/bug.png';
+bug.onload = function() {
+	var pattern = ctx.createPattern(this, "no-repeat");
+}
+
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	ctx.rect(bugX, bugY, 20, 20);
 
-	var bug = new Image();
-	bug.src = 'images/bug.png';
-	bug.onload = function() {
-		var pattern = ctx.createPattern(this, "no-repeat");
-		ctx.drawImage(bug, bugX, bugY - bugHeight);
-	}
+	ctx.drawImage(bug, bugX, bugY - bugHeight);
 
 	drawExit();
 	drawBricks();
 	drawFireballs();
 
 	moveBug();
-
 	fireballMovement();
+
+
 
 	exitCollision();
 }
