@@ -50,9 +50,15 @@ bug.onload = function() {
 	var pattern = ctx.createPattern(this, "no-repeat");
 }
 
+var fireball = new Image();
+fireball.src = 'images/fireball.png';
+fireball.onload = function() {
+	var pattern = ctx.createPattern(this, "no-repeat");
+}
+
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	ctx.rect(bugX, bugY, 20, 20);
+	ctx.rect(bugX, bugY, bugWidth, bugHeight);
 
 	ctx.drawImage(bug, bugX, bugY - bugHeight);
 
@@ -62,8 +68,6 @@ function draw() {
 
 	moveBug();
 	fireballMovement();
-
-
 
 	exitCollision();
 }
@@ -91,11 +95,7 @@ function drawExit() {
 }
 
 function drawFireball(fireballX, fireballY) {
-	ctx.beginPath();
-	ctx.arc(fireballX, fireballY, fireballRadius, 0, Math.PI*2);
-	ctx.fillStyle = '#E25822';
-	ctx.fill();
-	ctx.closePath();
+	ctx.drawImage(fireball, fireballX, fireballY - (fireballRadius * 2))
 }
 
 function drawFireballs() {
