@@ -36,7 +36,7 @@ for (i = 0; i < brickCount; i++) {
 
 for (i = 0; i < fireballCount; i++) {
 	fireballXArray.push(getRandomInt(10, canvas.width - fireballRadius));
-	fireballYArray.push(getRandomInt(10, canvas.height - fireballRadius));
+	fireballYArray.push(getRandomInt(10, canvas.height - fireballRadius - 20));
 
 	var fireballSpeed = getRandomInt(1, 5);
 
