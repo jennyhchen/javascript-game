@@ -85,7 +85,7 @@ function draw() {
 		fireballYArray[i] += fireballDYArray[i];
 	}
 
-	if (((bugY - bugHeight) == exitY) && ((bugX > exitX) && (bugX < (exitX + exitWidth)))) {
+	if (((bugY - bugHeight) == exitY) && (((bugX + bugWidth) > exitX) && (bugX < (exitX + exitWidth)))) {
 		alert("Congratulations! You got to the exit!");
         document.location.reload();
 	}
