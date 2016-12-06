@@ -10,8 +10,9 @@ var exitHeight = 5;
 var exitWidth = 30;
 var exitX = getRandomInt(10, (canvas.width-exitWidth));
 
-var x = canvas.width / 2;
-var y = canvas.height - 30;
+var brickCount = getRandomInt(5, 10);
+var brickXArray = [];
+var brickYArray = [];
 
 var upPressed = false;
 var downPressed = false;
@@ -20,6 +21,11 @@ var rightPressed = false;
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+
+for (i = 0; i < brickCount; i++) {
+	brickXArray.push(getRandomInt(10, 480));
+	brickYArray.push(getRandomInt(10, 320));
+}
 
 function drawBug() {
 	ctx.beginPath();
@@ -60,6 +66,9 @@ function drawBrick(brickX, brickY, brickWidth, brickHeight, brickColor) {
 }
 
 function drawBricks() {
+	for (i = 0; i < brickXArray.length; i++) {
+		drawBrick(brickXArray[i], brickYArray[i], 25, 25, '#7E7E7E');
+	}
 }
 
 function drawExit() {
