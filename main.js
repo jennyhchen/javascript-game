@@ -32,9 +32,9 @@ function drawBug() {
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	drawBricks();
 	drawBug();
 	drawExit();
+	drawBricks();
 	drawFire();
 
 	if (rightPressed && (bugX < (canvas.width - bugRadius))) {
