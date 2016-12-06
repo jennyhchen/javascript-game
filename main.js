@@ -9,6 +9,7 @@ var fireY = getRandomInt(1, 32);
 var exitHeight = 5;
 var exitWidth = 30;
 var exitX = getRandomInt(10, (canvas.width-exitWidth));
+var exitY = 0;
 
 var x = canvas.width / 2;
 var y = canvas.height - 30;
@@ -49,6 +50,11 @@ function draw() {
 	else if (downPressed && (bugY < (canvas.height - bugRadius))) {
 		bugY += 3;
 	}
+
+	if (((bugY - bugRadius) == exitY) && ((bugX > exitX) && (bugX < (exitX + exitWidth)))) {
+		alert("Congratulations! You got to the exit!");
+        document.location.reload();
+	}
 }
 
 function drawBrick(brickX, brickY, brickWidth, brickHeight, brickColor) {
@@ -64,7 +70,7 @@ function drawBricks() {
 
 function drawExit() {
 	ctx.beginPath();
-    ctx.rect(exitX, 0, exitWidth, exitHeight);
+    ctx.rect(exitX, exitY, exitWidth, exitHeight);
     ctx.fillStyle = "#000000";
     ctx.fill();
     ctx.closePath();
