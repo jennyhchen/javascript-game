@@ -108,7 +108,7 @@ function drawBricks() {
 function drawExit() {
 	ctx.beginPath();
     ctx.rect(exitX, exitY, exitWidth, exitHeight);
-    ctx.fillStyle = "#000000";
+    ctx.fillStyle = "#0000FF";
     ctx.fill();
     ctx.closePath();
 }
