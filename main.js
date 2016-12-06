@@ -17,9 +17,9 @@ var fireballYArray = [];
 var fireballDXArray = [];
 var fireballDYArray = [];
 
-var brickCount = getRandomInt(8, 15);
-var brickXArray = [];
-var brickYArray = [];
+var rockCount = getRandomInt(8, 15);
+var rockXArray = [];
+var rockYArray = [];
 
 var upPressed = false;
 var downPressed = false;
@@ -29,9 +29,9 @@ var rightPressed = false;
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-for (i = 0; i < brickCount; i++) {
-	brickXArray.push(getRandomInt(20, canvas.width - 45));
-	brickYArray.push(getRandomInt(20, canvas.height - 45));	
+for (i = 0; i < rockCount; i++) {
+	rockXArray.push(getRandomInt(20, canvas.width - 45));
+	rockYArray.push(getRandomInt(20, canvas.height - 45));	
 }
 
 for (i = 0; i < fireballCount; i++) {
@@ -56,6 +56,12 @@ fireball.onload = function() {
 	var pattern = ctx.createPattern(this, "no-repeat");
 }
 
+var rock = new Image();
+rock.src = 'images/rock.png';
+rock.onload = function() {
+	var pattern = ctx.createPattern(this, "no-repeat");
+}
+
 function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	ctx.rect(bugX, bugY, bugWidth, bugHeight);
@@ -63,7 +69,7 @@ function draw() {
 	ctx.drawImage(bug, bugX, bugY - bugHeight);
 
 	drawExit();
-	drawBricks();
+	drawRocks();
 	drawFireballs();
 
 	moveBug();
@@ -72,17 +78,13 @@ function draw() {
 	exitCollision();
 }
 
-function drawBrick(brickX, brickY, brickWidth, brickHeight, brickColor) {
-    ctx.beginPath();
-    ctx.rect(brickX, brickY, brickWidth, brickHeight);
-    ctx.fillStyle = brickColor;
-    ctx.fill();
-    ctx.closePath();
+function drawRock(rockX, rockY, rockWidth, rockHeight, rockColor) {
+	ctx.drawImage(rock, rockX, rockY);
 }
 
-function drawBricks() {
-	for (i = 0; i < brickXArray.length; i++) {
-		drawBrick(brickXArray[i], brickYArray[i], 25, 25, '#7E7E7E');
+function drawRocks() {
+	for (i = 0; i < rockXArray.length; i++) {
+		drawRock(rockXArray[i], rockYArray[i], 25, 25, '#7E7E7E');
 	}
 }
 
