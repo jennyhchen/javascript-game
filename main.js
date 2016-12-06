@@ -34,16 +34,16 @@ function draw() {
 	drawFire();
 
 	if (rightPressed && (bugX < (canvas.width - bugRadius))) {
-		bugX += 7;
+		bugX += 3;
 	}
 	else if (leftPressed && (bugX > 10)) {
-		bugX -= 7;
+		bugX -= 3;
 	}
 	else if (upPressed && (bugY > 10)) {
-		bugY -= 7;
+		bugY -= 3;
 	}
 	else if (downPressed && (bugY < (canvas.height - bugRadius))) {
-		bugY += 7;
+		bugY += 3;
 	}
 }
 
