@@ -33,16 +33,16 @@ function draw() {
 	drawBug();
 	drawFire();
 
-	if (rightPressed) {
+	if (rightPressed && (bugX < (canvas.width - bugRadius))) {
 		bugX += 7;
 	}
-	else if (leftPressed) {
+	else if (leftPressed && (bugX > 10)) {
 		bugX -= 7;
 	}
-	else if (upPressed) {
+	else if (upPressed && (bugY > 10)) {
 		bugY -= 7;
 	}
-	else if (downPressed) {
+	else if (downPressed && (bugY < (canvas.height - bugRadius))) {
 		bugY += 7;
 	}
 }
