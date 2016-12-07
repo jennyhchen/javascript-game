@@ -18,8 +18,12 @@ var fireballDXArray = [];
 var fireballDYArray = [];
 
 var rockCount = getRandomInt(8, 15);
+var rockHeight = 35;
+var rockWidth = 25;
 var rockXArray = [];
 var rockYArray = [];
+
+var direction = '';
 
 var upPressed = false;
 var downPressed = false;
@@ -162,20 +166,39 @@ function keyUpHandler(e) {
 	}
 	else if ((e.keyCode == 68) || (e.keyCode == 39)) {
 		rightPressed = false;
-	}	
+	}
+}
+
+function rockCollision(objectX, objectY, objectWidth, objectHeight) {
+	for (i = 0; i < rockXArray.length; i++) {
+		if (((objectX + objectWidth) > rockXArray[i]) && (objectX < (rockXArray[i] + rockWidth)) && (objectY > rockYArray[i]) && (objectY < rockYArray[i] + rockHeight)) {
+			if ((objectY > rockYArray[i]) && ((objectX + objectWidth) > rockXArray[i]) && (objectX < (rockXArray[i] + rockWidth))) {
+				return "down";
+			}
+			if ((objectY < rockYArray[i] + rockHeight) && ((objectX + objectWidth) > rockXArray[i]) && (objectX < (rockXArray[i] + rockWidth))) {
+				return "up";
+			}
+			if (((objectX + objectWidth) > rockXArray[i]) && (objectY > rockYArray[i]) && (objectY < rockYArray[i] + rockHeight)) {
+				return "right";
+			}
+			if ((objectX < (rockXArray[i] + rockWidth)) && (objectY > rockYArray[i]) && (objectY < rockYArray[i] + rockHeight)) {
+				return "left";
+			}
+		}
+	}
 }
 
 function moveBug() {
-	if (rightPressed && (bugX < (canvas.width - bugWidth))) {
+	if (rightPressed && (bugX < (canvas.width - bugWidth)) && (rockCollision(bugX, bugY, bugWidth, bugHeight) != "right")) {
 		bugX += 3;
 	}
-	else if (leftPressed && (bugX > 0)) {
+	if (leftPressed && (bugX > 0) && (rockCollision(bugX, bugY, bugWidth, bugHeight) != "left")) {
 		bugX -= 3;
 	}
-	else if (upPressed && (bugY > 20)) {
+	if (upPressed && (bugY > 20) && (rockCollision(bugX, bugY, bugWidth, bugHeight) != "up")) {
 		bugY -= 3;
 	}
-	else if (downPressed && (bugY < canvas.height)) {
+	if (downPressed && (bugY < canvas.height) && (rockCollision(bugX, bugY, bugWidth, bugHeight) != "down")) {
 		bugY += 3;
 	}
 }
