@@ -172,11 +172,11 @@ function keyUpHandler(e) {
 function rockCollision(objectX, objectY, objectWidth, objectHeight) {
 	for (i = 0; i < rockXArray.length; i++) {
 		if (((objectX + objectWidth) > rockXArray[i]) && (objectX < (rockXArray[i] + rockWidth)) && (objectY > rockYArray[i]) && (objectY < rockYArray[i] + rockHeight)) {
-			if ((objectY > rockYArray[i]) && ((objectX + objectWidth) > rockXArray[i]) && (objectX < (rockXArray[i] + rockWidth))) {
-				return "down";
-			}
 			if ((objectY < rockYArray[i] + rockHeight) && ((objectX + objectWidth) > rockXArray[i]) && (objectX < (rockXArray[i] + rockWidth))) {
 				return "up";
+			}
+			if ((objectY > rockYArray[i]) && ((objectX + objectWidth) > rockXArray[i]) && (objectX < (rockXArray[i] + rockWidth))) {
+				return "down";
 			}
 			if (((objectX + objectWidth) > rockXArray[i]) && (objectY > rockYArray[i]) && (objectY < rockYArray[i] + rockHeight)) {
 				return "right";
@@ -198,7 +198,7 @@ function moveBug() {
 	if (upPressed && (bugY > 20) && (rockCollision(bugX, bugY, bugWidth, bugHeight) != "up")) {
 		bugY -= 3;
 	}
-	if (downPressed && (bugY < canvas.height) && (rockCollision(bugX, bugY, bugWidth, bugHeight) != "down")) {
+	else if (downPressed && (bugY < canvas.height) && (rockCollision(bugX, bugY, bugWidth, bugHeight) != "down")) {
 		bugY += 3;
 	}
 }
